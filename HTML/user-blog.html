@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Blog</title>
+    <link rel="stylesheet" href="./CSS/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .submit-blog-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .submit-blog-section h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #283593;
+        }
+        .submit-blog-section label {
+            display: block;
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+        .submit-blog-section input[type="text"],
+        .submit-blog-section input[type="file"],
+        .submit-blog-section select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .submit-blog-section textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .submit-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #283593;
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            border: none;
+        }
+        .submit-button:hover {
+            background-color: #1a237e;
+        }
+        @media (max-width: 768px) {
+            .submit-blog-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <!-- TinyMCE Editor -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+       tinymce.init({
+            selector: '#content',
+            plugins: 'image code media link',
+            toolbar: 'undo redo | formatselect | bold italic underline | forecolor backcolor | link image media | code',
+            content_css: 'https://www.tiny.cloud/css/codepen.min.css',
+            images_upload_handler: function (blobInfo, success, failure) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload');
+                xhr.setRequestHeader('Authorization', 'Bearer YOUR_API_KEY');
+                xhr.onload = function () {
+                    var json;
+                    if (xhr.status !== 200) {
+                        failure('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+                    json = JSON.parse(xhr.responseText);
+                    if (!json || typeof json.secure_url !== 'string') {
+                        failure('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+                    success(json.secure_url);
+                };
+                var formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+                formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
+                xhr.send(formData);
+            }
+        });
+    </script>
+    <!-- Google Tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W83EB3VNWW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W83EB3VNWW');
+    </script>
+</head>
+<body>
+    <div class="submit-blog-section">
+        <h2>Submit Your Blog</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <label for="title">Blog Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter the title of your blog" required>
+
+            <label for="author">Your Name</label>
+            <input type="text" id="author" name="author" placeholder="Enter your name" required>
+
+            <label for="image">Upload Cover Image (Optional)</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <label for="tags">Tags (Optional)</label>
+            <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
+
+            <label for="categories">Categories (Optional)</label>
+            <select id="categories" name="categories">
+                <option value="">Select a category</option>
+                <option value="technology">Technology</option>
+                <option value="education">Education</option>
+                <option value="lifestyle">Lifestyle</option>
+                <option value="travel">Travel</option>
+            </select>
+
+            <label for="content">Blog Content</label>
+            <textarea id="content" name="content" rows="15" placeholder="Write your blog content here" required></textarea>
+
+            <button type="submit" class="submit-button">Submit Blog</button>
+        </form>
+    </div>
+</body>
+</html>

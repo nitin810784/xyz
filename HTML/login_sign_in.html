@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=../CSS/header.css>
+<link rel=stylesheet href=../CSS/login_sign_in.css>
+<link rel=stylesheet href=../CSS/footer.css>
+<link rel=stylesheet href=../CSS/fadein.css>
+<title>Login / Sign Up</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W83EB3VNWW"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W83EB3VNWW');
+</script>
+</head>
+<body>
+<header class=header>
+<div class=logo>
+<span class=namaste-text>Namaste</span>
+<span class=tech-highlight>Tech</span>
+</div>
+<div class="hamburger fade-in" onclick=toggleNav()>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<nav class=nav_bar id=navbar>
+<ul class=navbar_links>
+<li><a href=../index.html>Home</a></li>
+<li><a href=./services.html>Services</a></li>
+<li><a href=./about_us.html>About Us</a></li>
+<li><a href=./contact_us.html>Contact Us</a></li>
+<li><a href=./login_sign_in.html>Login</a></li>
+</ul>
+</nav>
+</header>
+<div class=all-container>
+<div class=container>
+<div id=login-form class=form-container>
+<h2>Login</h2>
+<form action=# method=post>
+<label for=login-email>Email</label>
+<input type=email id=login-email name=email required>
+<label for=login-password>Password</label>
+<input type=password id=login-password name=password required>
+<button type=submit>Login</button>
+<p class="forgot-password sign-acc"><a href=# class=a-link>Forgot Password?</a></p>
+</form>
+<p class=sign-acc>Don't have an account? <a href=# id=to-signup class=a-link>Sign Up</a></p>
+</div>
+<div id=signup-form class=form-container style=display:none>
+<h2>Sign Up</h2>
+<form action=# method=post>
+<label for=signup-name>Full Name</label>
+<input id=signup-name name=name required>
+<label for=signup-email>Email</label>
+<input type=email id=signup-email name=email required>
+<label for=signup-password>Password</label>
+<input type=password id=signup-password name=password required>
+<label for=confirm-password>Confirm Password</label>
+<input type=password id=confirm-password name=confirm-password required>
+<button type=submit>Sign Up</button>
+</form>
+<p class=sign-acc>Already have an account? <a href=# id=to-login class=a-link>Login</a></p>
+</div>
+</div>
+</div>
+<div id=error-modal class=modal>
+<div class=modal-content>
+<span id=modal-close class=modal-close>&times;</span>
+<p id=modal-message></p>
+</div>
+</div>
+<footer class="footer fade-in">
+<div class="footer-container fade-in">
+<div class="footer-section company fade-in">
+<h2 class="footer-heading fade-in">Namaste Tech</h2>
+<p class="company-desc fade-in">We provide all digital solutions from web development to digital marketing, making your business stand out.</p>
+</div>
+<div class="footer-section useful-links fade-in">
+<h2 class="footer-heading fade-in">Useful Links</h2>
+<ul class="footer-links fade-in">
+<li><a href=./about_us.html class=fade-in>About Us</a></li>
+<li><a href=./services.html class=fade-in>Services</a></li>
+</ul>
+</div>
+<div class="footer-section quick-links fade-in">
+<h2 class="footer-heading fade-in">Quick Links</h2>
+<ul class="footer-links fade-in">
+<li><a href=./blog.html class=fade-in>Blog</a></li>
+<li><a href=./contact_us.html class=fade-in>Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-section contact fade-in">
+<h2 class="footer-heading fade-in">Have a Question?</h2>
+<p class=fade-in>Feel free to get in touch with us.</p>
+<p class=fade-in>Email: hemant505gautam@gmail.com</p>
+<p class=fade-in>Phone: +91 9351733774</p>
+</div>
+</div>
+<div class="footer-bottom fade-in">
+<p>&copy; 2024 Namaste Tech. All Rights Reserved.</p>
+</div>
+</footer>
+<script src=../JS/form-toggle.js defer></script>
+<script src=../JS/header.js defer></script>
+</body>
+</html>
